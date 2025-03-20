@@ -1,7 +1,7 @@
 import asyncio
 import websockets
 import json
-from data_processor import aggregate_stats
+from backend.data_processor import aggregate_stats
 
 async def send_data(websocket, path):
     while True:

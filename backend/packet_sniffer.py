@@ -1,4 +1,4 @@
-rom scapy.all import sniff
+from scapy.all import sniff
 import json
 
 def packet_callback(packet):
