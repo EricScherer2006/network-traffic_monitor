@@ -9,10 +9,12 @@ def run_sniffer():
 
 
 def run_websocket():
-    asyncio.run(websocket_server())
+    await websocket_server()
     print("Test print")
 
 if __name__ == "__main__":
-    threading.Thread(target=run_sniffer).start()
-    threading.Thread(target=run_websocket).start()
-    print("Test print")
+    sniffer_thread = threading.Thread(target=run_sniffer, daemon=True) 
+    sniffer_thread.start()
+    
+    asyncio.run(run_websocket())
+    print("Test print_ from main loop")
