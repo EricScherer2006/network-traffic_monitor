@@ -1,4 +1,5 @@
-from scapy.all import sniff
+from scapy.all import get_if_list
+print(get_if_list())
 import json
 
 def packet_callback(packet):
@@ -13,5 +14,5 @@ def packet_callback(packet):
     except Exception as e:
         print(f"Error processing packet: {e}")
 
-def start_sniffing(interface="eth0"):
+def start_sniffing(interface="Ethernal"):
     sniff(iface=interface, prn=packet_callback, store=False)
