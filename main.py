@@ -8,7 +8,7 @@ def run_sniffer():
     print("Test print")
 
 
-def run_websocket():
+async def run_websocket():
     await websocket_server()
     print("Test print")
 
