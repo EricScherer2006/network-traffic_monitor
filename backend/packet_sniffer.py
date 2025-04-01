@@ -4,6 +4,7 @@ import json
 
 def packet_callback(packet):
     print("Package recieved")
+    print("✅ Packet received:", packet.summary())
     try:
         packet_info = {
             "src": packet[0][1].src,
@@ -15,7 +16,7 @@ def packet_callback(packet):
     except Exception as e:
         print(f"Error processing packet: {e}")
 
-def start_sniffing(interface="\\Device\\NPF_{C141C74E-1825-4155-BE1F-31A720F5F20B}"):
+def start_sniffing():
     print("Sniffer starting on interface")
-    sniff(iface=interface, prn=packet_callback, store=False, timeout=5)
+    sniff(iface=none, prn=packet_callback, store=False, timeout=5)
     print("Sniffer: Finished")
