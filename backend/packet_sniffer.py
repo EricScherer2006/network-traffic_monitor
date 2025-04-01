@@ -15,5 +15,5 @@ def packet_callback(packet):
     except Exception as e:
         print(f"Error processing packet: {e}")
 
-def start_sniffing(interface="Wi-Fi"):
+def start_sniffing(interface="\\Device\\NPF_{C141C74E-1825-4155-BE1F-31A720F5F20B}"):
     sniff(iface=interface, prn=packet_callback, store=False)
