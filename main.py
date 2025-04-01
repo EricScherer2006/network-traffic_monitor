@@ -5,9 +5,10 @@ from backend.web_socket import main as websocket_server
 
 def run_sniffer():
     """Runs the packet sniffer in a separate thread."""
-    print("Sniffer thread starting")
-    start_sniffing()
-    print("Sniffer thread started")
+    try:
+        print("Sniffer thread starting")
+        start_sniffing()
+        print("Sniffer thread started")
     except Exception as e:
         print("Sniffer crashed")
 
