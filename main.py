@@ -8,18 +8,25 @@ def run_sniffer():
     print("Sniffer thread starting")
     start_sniffing()
     print("Sniffer thread started")
+    except Exception as e:
+        print("Sniffer crashed")
 
 async def main():
-    """Runs both the sniffer and WebSocket server concurrently."""
-    print("Main async loop started")
-    loop = asyncio.get_running_loop()
+    print("Main async function started!") 
 
-    # Run sniffer in a background thread (non-blocking)
+    loop = asyncio.get_running_loop()
     loop.run_in_executor(None, run_sniffer)
-    print("Starting websocket_server")
-    # Start the WebSocket server (async function)
-    await websocket_server()
-    print("Websocket_server started")
+
+    print("About to start WebSocket server...")
+
+    # ✅ Run WebSocket server as a background task
+    asyncio.create_task(websocket_server())
+
+    print("✅ WebSocket server is running in background!")  # Now this should print
+
+    # Keep the event loop alive
+    while True:
+        await asyncio.sleep(1)
 
 # Ensure this runs in the main event loop
 if __name__ == "__main__":
