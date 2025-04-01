@@ -1,4 +1,5 @@
 import threading
+import asyncio
 from backend.packet_sniffer import start_sniffing as start_sniffing
 from backend.web_socket import main as websocket_server
 
@@ -8,7 +9,7 @@ def run_sniffer():
 
 
 def run_websocket():
-    websocket_server()
+    asyncio.run(websocket_server())
     print("Test print")
 
 if __name__ == "__main__":
