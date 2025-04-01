@@ -1,9 +1,9 @@
 from scapy.all import get_if_list
 from scapy.all import sniff
-print(get_if_list())
 import json
 
 def packet_callback(packet):
+    print("Package recieved")
     try:
         packet_info = {
             "src": packet[0][1].src,
