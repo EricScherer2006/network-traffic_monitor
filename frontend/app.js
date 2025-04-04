@@ -9,6 +9,11 @@ socket.onerror = function(error) {
 };
 
 socket.onmessage = function(event) {
-    const data = JSON.parse(event.data);
-    protocolsDiv.innerText = `Protocol: ${data.protocol}, Size: ${data.size} bytes`;
-};
+    console.log("📩 Message received:", event.data);
+    try {
+        const data = JSON.parse(event.data);
+        protocolsDiv.innerText = `Protocol: ${data.protocol}, Size: ${data.size} bytes`;
+    } catch (e) {
+        console.error("❌ Failed to parse message:", event.data, e);
+    }
+}
