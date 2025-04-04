@@ -1,7 +1,7 @@
 import asyncio
 import threading
 from backend.packet_sniffer import start_sniffing
-from backend.web_socket import main as websocket_server
+from backend.web_socket import start_websocket_server
 
 def run_sniffer():
     """Runs the packet sniffer in a separate thread."""
@@ -14,21 +14,19 @@ def run_sniffer():
 
 async def main():
     print("Main async function started!") 
-
+    
     loop = asyncio.get_running_loop()
     loop.run_in_executor(None, run_sniffer)
 
     print("About to start WebSocket server...")
 
-    # ✅ Run WebSocket server as a background task
-    asyncio.create_task(websocket_server())
+    asyncio.create_task(start_websocket_server())  
 
-    print("✅ WebSocket server is running in background!")  # Now this should print
+    print("WebSocket server is running in background!")
 
-    # Keep the event loop alive
     while True:
         await asyncio.sleep(1)
-
+        
 # Ensure this runs in the main event loop
 if __name__ == "__main__":
     print("Script started")
