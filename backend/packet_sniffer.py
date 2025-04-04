@@ -18,5 +18,8 @@ def packet_callback(packet):
 
 def start_sniffing():
     print("Sniffer starting on interface")
-    sniff(iface=none, prn=packet_callback, store=False, timeout=5)
+    try:
+        sniff(iface=None, prn=packet_callback, store=False, timeout=5)
+    except Exception as e:
+        print(f"Sniffer crashed: {e}")
     print("Sniffer: Finished")
