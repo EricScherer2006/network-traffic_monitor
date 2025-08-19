@@ -12,7 +12,7 @@ def generate_random_packet():
         "size": random.randint(40, 1500)
     }
 
-async def start_demo_sniffing(interval=0.3):
+async def start_demo_sniffing(interval=0.5):
     """Simulate continuous packet capturing like the real sniffer."""
     try:
         while True:
