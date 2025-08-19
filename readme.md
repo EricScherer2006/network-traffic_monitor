@@ -1,6 +1,9 @@
 # Async Packet Sniffer with WebSocket Streaming
 
-A small Python project that sniffs network packets using `scapy` and streams packet data in real-time over WebSockets with a minimal browser frontend. Useful for learning async patterns, queues, and WebSocket servers in Python.
+A small Python project that sniffs IP packets using `scapy` and streams packet data in real-time over WebSockets with a minimal browser frontend. Useful for learning async patterns, queues, and WebSocket servers in Python.
+
+**Note:** The following demo uses simulated network traffic for illustration purposes. No real IP data is shown.
+![Demo GIF](assets/Run_DemoData.gif)
 
 ## Features
 
@@ -48,20 +51,6 @@ Watch the protocol and size of captured packets update live.
 
 3.Ctrl+C stops both the sniffer and the WebSocket server gracefully.
 
-# Project Structure
-
-
-backend/
-├── packet_sniffer.py
-├── web_socket.py
-├── data_processor.py  # optional aggregation logic
-frontend/ 
-├── index.html
-└── main.js
-└──styles.css
-main.py
-requirements.txt
-README.md
 
 # Notes
 
