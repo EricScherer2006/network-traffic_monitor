@@ -1,4 +1,6 @@
 from scapy.all import sniff
+from scapy.layers.inet import IP, TCP, UDP, ICMP
+
 import queue
 import logging
 
@@ -8,12 +10,28 @@ packet_queue = queue.Queue()
 
 def packet_callback(packet):
     try:
-        packet_info = {
-            "src": packet[0][1].src,
-            "dst": packet[0][1].dst,
-            "protocol": packet[0][1].name,
-            "size": len(packet)
-        }
+        if IP in packet:
+            ip_layer = packet[IP]
+            protocol = "OTHER"
+            if TCP in packet:
+                protocol = "TCP"
+            elif UDP in packet:
+                protocol = "UDP"
+            elif ICMP in packet:
+                protocol = "ICMP"
+            elif IP in packet:
+                protocol = "IP"
+
+            packet_info = {
+                "src": ip_layer.src,
+                "dst": ip_layer.dst,
+                "protocol": protocol,
+                "size": len(packet)
+            }
+
+        else:
+            return
+
         logger.info(f"✅ Packet captured: {packet_info}")
         packet_queue.put(packet_info)
     except Exception as e:
